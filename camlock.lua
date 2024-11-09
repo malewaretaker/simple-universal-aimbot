@@ -5,7 +5,7 @@ local TweenService = game:GetService("TweenService")
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 local Mouse = LocalPlayer:GetMouse()
--- rewritten slightly
+-- rewritten slightly, and also re organized
 getgenv().CamlockSettings = {
     ["IntroSettings"] = {
         ["Intro"] = ,
@@ -25,10 +25,11 @@ getgenv().CamlockSettings = {
         ["Amount"] = 0.2,
     }
 }
-
+-- variables
 local target = nil
 local aiming = false
-
+--
+-- functions 
 local function playIntro()
     if getgenv().CamlockSettings.IntroSettings.Intro then
         local introGui = Instance.new("ScreenGui")
@@ -103,7 +104,7 @@ local function camlock()
     end
     aiming = false
 end
-
+-- services
 UserInputService.InputBegan:Connect(function(input, isProcessed)
     if not isProcessed and input.KeyCode == Enum.KeyCode[getgenv().CamlockSettings.Combat.Keybind:upper()] and getgenv().CamlockSettings.Combat.Enabled then
         target = getClosestPlayerToMouse()
@@ -119,3 +120,4 @@ UserInputService.InputEnded:Connect(function(input)
         aiming = false
     end
 end)
+-- yeah ig dude?
